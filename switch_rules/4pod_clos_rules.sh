@@ -1,0 +1,28 @@
+dpctl unix:/tmp/s1 group-mod cmd=add,type=sel,group=0 weight=100, output=2 weight=100, output=3 weight=100, output=4
+dpctl unix:/tmp/s1 flow-mod cmd=add,table=0 in_port=5,eth_type=0x800, apply:group=0,
+dpctl unix:/tmp/cs1 flow-mod cmd=add,table=0 eth_dst=00:00:00:00:00:01, apply:output=1,
+dpctl unix:/tmp/cs1 flow-mod cmd=add,table=0 eth_dst=00:00:00:00:00:02, apply:output=2,
+dpctl unix:/tmp/cs1 flow-mod cmd=add,table=0 eth_dst=00:00:00:00:00:03, apply:output=3,
+dpctl unix:/tmp/cs1 flow-mod cmd=add,table=0 eth_dst=00:00:00:00:00:04, apply:output=4,
+dpctl unix:/tmp/s1 flow-mod cmd=add,table=0 eth_dst=00:00:00:00:00:01, apply:output=5,
+dpctl unix:/tmp/s2 group-mod cmd=add,type=sel,group=0 weight=100, output=1 weight=100, output=3 weight=100, output=4
+dpctl unix:/tmp/s2 flow-mod cmd=add,table=0 in_port=5,eth_type=0x800, apply:group=0,
+dpctl unix:/tmp/cs2 flow-mod cmd=add,table=0 eth_dst=00:00:00:00:00:01, apply:output=1,
+dpctl unix:/tmp/cs2 flow-mod cmd=add,table=0 eth_dst=00:00:00:00:00:02, apply:output=2,
+dpctl unix:/tmp/cs2 flow-mod cmd=add,table=0 eth_dst=00:00:00:00:00:03, apply:output=3,
+dpctl unix:/tmp/cs2 flow-mod cmd=add,table=0 eth_dst=00:00:00:00:00:04, apply:output=4,
+dpctl unix:/tmp/s2 flow-mod cmd=add,table=0 eth_dst=00:00:00:00:00:02, apply:output=5,
+dpctl unix:/tmp/s3 group-mod cmd=add,type=sel,group=0 weight=100, output=1 weight=100, output=2 weight=100, output=4
+dpctl unix:/tmp/s3 flow-mod cmd=add,table=0 in_port=5,eth_type=0x800, apply:group=0,
+dpctl unix:/tmp/cs3 flow-mod cmd=add,table=0 eth_dst=00:00:00:00:00:01, apply:output=1,
+dpctl unix:/tmp/cs3 flow-mod cmd=add,table=0 eth_dst=00:00:00:00:00:02, apply:output=2,
+dpctl unix:/tmp/cs3 flow-mod cmd=add,table=0 eth_dst=00:00:00:00:00:03, apply:output=3,
+dpctl unix:/tmp/cs3 flow-mod cmd=add,table=0 eth_dst=00:00:00:00:00:04, apply:output=4,
+dpctl unix:/tmp/s3 flow-mod cmd=add,table=0 eth_dst=00:00:00:00:00:03, apply:output=5,
+dpctl unix:/tmp/s4 group-mod cmd=add,type=sel,group=0 weight=100, output=1 weight=100, output=2 weight=100, output=3
+dpctl unix:/tmp/s4 flow-mod cmd=add,table=0 in_port=5,eth_type=0x800, apply:group=0,
+dpctl unix:/tmp/cs4 flow-mod cmd=add,table=0 eth_dst=00:00:00:00:00:01, apply:output=1,
+dpctl unix:/tmp/cs4 flow-mod cmd=add,table=0 eth_dst=00:00:00:00:00:02, apply:output=2,
+dpctl unix:/tmp/cs4 flow-mod cmd=add,table=0 eth_dst=00:00:00:00:00:03, apply:output=3,
+dpctl unix:/tmp/cs4 flow-mod cmd=add,table=0 eth_dst=00:00:00:00:00:04, apply:output=4,
+dpctl unix:/tmp/s4 flow-mod cmd=add,table=0 eth_dst=00:00:00:00:00:04, apply:output=5,
